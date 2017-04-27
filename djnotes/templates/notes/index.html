@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Notes{% endblock title %}
+
+{% block content %}
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form class="inline-form" action="{% url 'index' %}" method="post">
+			{% csrf_token %}
+			<input type="text" class="form-control clear-focus-highlight" id="txtNewTitle" name="title" placeholder="Add title"><br>
+			<textarea type="text" class="form-control clear-focus-highlight" id="txtNewNote" name="note" placeholder="Take a note"></textarea><br>
+			<input type="submit" class="btn btn-raised btn-primary btn-sm" value="Create note">
+		</div>
+	</div>
+	<div class="row">
+		{% for note in notes %}
+		<div class="col-xs-6 col-sm-6 col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					{{ note.title }}
+				</div>
+				<div class="panel-body">	
+					{{ note.note }}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+{% endblock content %}
