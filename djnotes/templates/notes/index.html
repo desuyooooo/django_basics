@@ -10,20 +10,23 @@
 			<input type="text" class="form-control clear-focus-highlight" id="txtNewTitle" name="title" placeholder="Add title"><br>
 			<textarea type="text" class="form-control clear-focus-highlight" id="txtNewNote" name="note" placeholder="Take a note"></textarea><br>
 			<input type="submit" class="btn btn-raised btn-primary btn-sm" value="Create note">
+			</form>
 		</div>
 	</div>
 	<div class="row">
 		{% for note in notes %}
-		<div class="col-xs-6 col-sm-6 col-md-4">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					{{ note.title }}
-				</div>
-				<div class="panel-body">	
-					{{ note.note }}
+		<a href="{% url 'update' note.id %}">
+			<div class="col-xs-6 col-sm-6 col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						{{ note.title }}
+					</div>
+					<div class="panel-body">	
+						{{ note.note }}
+					</div>
 				</div>
 			</div>
-		</div>
+		</a>
 		{% endfor %}
 
 	</div>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Notes {% if note.title %}| {{ note.title }}{% endif %}{% endblock title %}
+
+{% block content %}
+	<form action="{% url 'update' note.id %}" method="post">
+		<div class="panel panel-default">
+			<div class="panel panel-heading">
+				{% csrf_token %}
+				<input type="text" class="form-control clear-focus-highlight" id="txtNewTitle" name="title" placeholder="Add title" value="{{ note.title }}">
+			</div>
+			<div class="panel-body">	
+				<textarea type="text" class="form-control clear-focus-highlight" id="txtNewNote" name="note" rows="10em" placeholder="Take a note">{{ note.note }}</textarea>
+			</div>
+			<div class="panel-footer">
+				<input type="submit" class="btn btn-raised btn-default btn-raised btn-sm" value="Save">
+				<a class="btn btn-danger btn-raised btn-sm" href="{% url 'delete' note.id %}">Delete</a>
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<p><a class="btn btn-raised btn-primary btn-xs" href="{% url 'index' %}">Back</a></p>
+		</div>
+	</div>
+
+{% endblock content %}
